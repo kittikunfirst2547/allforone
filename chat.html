@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email List</title>
+    <style>
+        /* Styling for the container */
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Styling for list sections */
+        .list-section {
+            width: 45%;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        /* Styling for individual email items */
+        .email-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Styling for delete icon */
+        .delete-icon {
+            cursor: pointer;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Email List</h1>
+
+    <div class="container">
+        <!-- Section for active emails -->
+        <div class="list-section" id="emailList">
+            <h2>Inbox</h2>
+            <div class="email-item" id="email1">
+                <span>Email 1</span>
+                <span class="delete-icon" onclick="deleteEmail('email1')">🗑️</span>
+            </div>
+            <div class="email-item" id="email2">
+                <span>Email 2</span>
+                <span class="delete-icon" onclick="deleteEmail('email2')">🗑️</span>
+            </div>
+            <div class="email-item" id="email3">
+                <span>Email 3</span>
+                <span class="delete-icon" onclick="deleteEmail('email3')">🗑️</span>
+            </div>
+        </div>
+
+        <!-- Section for deleted emails -->
+        <div class="list-section" id="deletedEmails">
+            <h2>Deleted</h2>
+        </div>
+    </div>
+
+    <script>
+        // Function to move email to Deleted section
+        function deleteEmail(emailId) {
+            // Get the email item by its ID
+            const emailItem = document.getElementById(emailId);
+            
+            // Clone the email item and remove delete icon
+            const deletedEmail = emailItem.cloneNode(true);
+            deletedEmail.querySelector('.delete-icon').remove();
+
+            // Move the cloned item to the deleted list and remove from original list
+            document.getElementById('deletedEmails').appendChild(deletedEmail);
+            emailItem.remove();
+        }
+    </script>
+</body>
+</html>

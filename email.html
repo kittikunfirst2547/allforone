@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email</title>
+  <link rel="stylesheet" href="email.css">
+</head>  
+
+<body>
+  <header>
+    <h2 class="logo">SYNC</h2>
+    <nav class="search-bar">
+      <span class="icon">
+        <ion-icon name="search-outline"></ion-icon>
+      </span>
+      <input type="text" id="searchInput" placeholder="Search email" onkeyup="searchEmail()">
+    </nav>
+    <span class="icon1">
+      <ion-icon name="person-circle-outline"></ion-icon>
+    </span>
+    <span class="icon2">
+      <ion-icon name="log-out-outline" onclick="logout()"></ion-icon>
+    </span>
+  </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <button class="compose-btn" onclick="showCompose()">
+          <span class="icon">
+            <ion-icon name="pencil-outline"></ion-icon>
+          </span>
+        Compose
+      </button>
+      <ul class="menu">
+        <li onclick="showInbox()" id="inboxbtn" class="btn active">
+            <span class="icon">
+              <ion-icon name="mail-outline"></ion-icon>
+            </span>
+          Inbox
+        </li>
+        <li onclick="showSent()" id="sentbtn" class="btn">
+            <span class="icon">
+              <ion-icon name="send-outline"></ion-icon>
+            </span>
+          Sent
+        </li>
+        <li onclick="showTrash()" id="trashbtn" class="btn">
+            <span class="icon">
+              <ion-icon name="trash-outline"></ion-icon>
+            </span>
+          Trash
+        </li>
+      </ul>
+    </aside>
+
+      <div class="email-app">
+        <main>
+          <!-- Inbox Section -->
+          <section id="inboxemail-list" class="content-section">
+            <h2>Inbox</h2>
+            <ul id="inboxemails"></ul>
+          </section>
+        
+          <!-- Sent Section -->
+          <section id="sentemail-list" class="content-section hidden">
+            <h2>Sent</h2>
+            <ul id="emails"></ul>
+          </section>
+
+          <!-- Trash Section -->
+          <section id="deleteemail-list" class="content-section hidden">
+            <h2>Trash</h2>
+            <button onclick="clearTrash()" class="clear-icon">Clear All Trash</button>
+            <ul id="trashemails"></ul>
+          </section>
+    
+          <!-- Email Details Section -->
+          <section id="email-details" class="content-section hidden">
+            <div id="email-content"></div>
+          </section>
+    
+          <!-- Compose Email Section -->
+          <section id="compose-email" class="content-section hidden">
+            <h2>Compose Email</h2>
+            <form id="email-form" class="form-section" onsubmit="sendEmail(event)">
+                <label for="to">To:</label><br>
+                <input type="email" name="to" id="to" required placeholder="Example@gmail.com"><br><br>
+                <label for="subject">Subject:</label><br>
+                <input type="text" name="subject" id="subject" placeholder="Collaboration Request" required><br><br>
+                <label for="message">Message:</label><br>
+                <textarea name="message" id="message" required placeholder="Your text..."></textarea><br><br>
+                <button type="submit" class="send-btn">Send</button>
+              </div>
+            </form>
+          </section>
+        </main>
+      </div>
+    
+<script src="email.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</html>
